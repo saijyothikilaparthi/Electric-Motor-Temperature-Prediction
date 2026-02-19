@@ -1,0 +1,7 @@
+Starting script...
+Data loaded: (1000, 13)
+Data split.
+Data scaled using MinMaxScaler.
+Decision Tree Model trained.
+Model Evaluated. RMSE: 4.6451, R2: 0.8124
+Model and scaler saved successfully to Project Folder and Flask subfolder.
