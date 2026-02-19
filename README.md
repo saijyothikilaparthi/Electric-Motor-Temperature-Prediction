@@ -11,4 +11,5 @@ Facility managers can leverage temperature predictions to optimize energy consum
 Scenario 3: Equipment Reliability
 Industries relying heavily on electric motors, such as automotive production or HVAC systems, can benefit from accurate temperature predictions. Ensuring motors operate within safe temperature ranges enhances equipment reliability, prolongs lifespan, and minimizes the risk of unexpected breakdowns during critical operations.
 
+![Uploading Screenshot 2026-02-19 125919.png…]()
 
