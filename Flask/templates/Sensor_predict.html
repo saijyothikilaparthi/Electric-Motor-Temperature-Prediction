@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Prediction - Electric Motor Temperature</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 20px 40px;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #222;
+            font-size: 32px;
+        }
+
+        .description {
+            color: #555;
+            margin-bottom: 40px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .data-display {
+            margin-top: 30px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .result {
+            color: red;
+            font-size: 32px;
+            margin-top: 20px;
+            font-weight: 400;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        Electric Motor Temperature
+    </div>
+
+    <div class="container">
+        <h1>Electric Motor Temperature Prediction using Sensor Data</h1>
+        <div class="description">
+            Data obtained from sensors (Ambient, Coolant, Voltage d/q, Motor Speed, Current d/q) is processed to predict
+            the Rotor Temperature. Upload a CSV file containing the sensor readings.
+        </div>
+
+        <form action="/predict_sensor" method="post" enctype="multipart/form-data">
+            <input type="file" name="sensor_data" accept=".csv" required>
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if data %}
+        <div class="data-display">
+            Sensor data given to the model in the order {ambient, coolant, u_d, u_q, motor_speed, i_d, i_q} are<br><br>
+            {{ data }}
+        </div>
+        {% endif %}
+
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
+</body>
+
+</html>

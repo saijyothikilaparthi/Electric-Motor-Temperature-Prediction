@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Motor Temperature Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        input {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Motor Temp Prediction</h2>
+        <form action="/predict" method="post">
+            <label for="ambient">Ambient Temperature (°C):</label>
+            <input type="number" step="any" id="ambient" name="ambient" required placeholder="e.g. 25.0">
+
+            <label for="coolant">Coolant Temperature (°C):</label>
+            <input type="number" step="any" id="coolant" name="coolant" required placeholder="e.g. 50.0">
+
+            <label for="u_d">Voltage d-component (V):</label>
+            <input type="number" step="any" id="u_d" name="u_d" required placeholder="e.g. 0.0">
+
+            <label for="u_q">Voltage q-component (V):</label>
+            <input type="number" step="any" id="u_q" name="u_q" required placeholder="e.g. 50.0">
+
+            <label for="motor_speed">Motor Speed (rpm):</label>
+            <input type="number" step="any" id="motor_speed" name="motor_speed" required placeholder="e.g. 3000">
+
+
+            <label for="i_d">Current d-component (A):</label>
+            <input type="number" step="any" id="i_d" name="i_d" required placeholder="e.g. -100.0">
+
+            <label for="i_q">Current q-component (A):</label>
+            <input type="number" step="any" id="i_q" name="i_q" required placeholder="e.g. 100.0">
+
+            <button type="submit">Predict Temperature</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

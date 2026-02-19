@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Motor Temperature Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="header">
+        <div>Electric Motor Temperature</div>
+        <a href="/">Home</a>
+    </div>
+
+    <div class="container">
+        <h1>Electric Motor Temperature Prediction</h1>
+        <div class="description">Fill in the details below to predict the Permanent Magnet surface temperature.</div>
+
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+
+        <form action="/predict" method="post">
+            <input type="number" step="any" name="ambient" placeholder="Ambient temperature" required>
+            <input type="number" step="any" name="coolant" placeholder="Coolant temperature" required>
+            <input type="number" step="any" name="u_d" placeholder="Voltage d-component" required>
+            <input type="number" step="any" name="u_q" placeholder="Voltage q-component" required>
+            <input type="number" step="any" name="motor_speed" placeholder="Motor speed" required>
+            <input type="number" step="any" name="i_d" placeholder="Current d-component" required>
+            <input type="number" step="any" name="i_q" placeholder="Current q-component" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
+</body>
+
+</html>
